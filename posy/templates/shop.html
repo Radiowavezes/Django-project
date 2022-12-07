@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{%extends "main.html"%}
+{% block "content" %}
+  <section class="fruit_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <div class="d-flex  flex-column flex-lg-row align-items-center">
+          {% for category in categories %}
+          <ul class="navbar-nav  ">
+          <li class="nav-item">
+            <a class="" href="">{{category.category}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </li>
+        </ul>
+          {%endfor%}
+      </div>
+        <hr>
+        <h2>
+          Fresh Bouquets
+        </h2>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="fruit_container">
+        {% for good in goods %}
+        <div class="box">
+          <img src="{{good.image.url}}" alt="">
+          <div class="link_box">
+            <h5>
+              {{good.title}} - <strong>{{good.price}}</strong>
+            </h5>
+            <p>{{good.description}}</p>
+            <a href=""> Buy Now </a> 
+            <p></p>
+            <a href=""> Read more </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock "content" %}

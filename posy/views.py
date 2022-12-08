@@ -21,5 +21,4 @@ def shop(request):
         'categories': categories,
     }
     return HttpResponse(template.render(context, request))
-
-class Index(View)
+           

@@ -101,6 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = '/login/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -128,3 +129,23 @@ IMAGES_URL = 'images/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# logging
+
+LOGGING = {
+        'version': 1,
+        'disable_existing_loggers':False,
+        'handlers':{
+            'console':{
+                'class':'logging.StreamHandler',
+            },
+            'file':{
+                'class':'logging.FileHandler',
+                'filename':'posyshop.log',
+            },
+        },
+        'root':{
+            'handlers':['console', 'file'],
+            'level':'DEBUG',
+        },
+    }

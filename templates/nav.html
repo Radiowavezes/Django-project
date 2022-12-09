@@ -23,11 +23,24 @@
                 <li class="nav-item">
                   <a class="nav-link" href="">Contact me</a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="#">Cart</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Login</a>
+                  <a class="nav-link" href="">Hi, {{ user.username }}!</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "logout" %}" action='signout'>Log out</a>
+                </li>
+                  {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url "login" %}">Cart</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url "login" %}">Login</a>
+                  </li>
+                  {% endif %}
                 </li>
               </ul>
             </div>

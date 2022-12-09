@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% block login %}
+<br></br>
+<br></br>
+<br></br>
+<div class="col-lg-4 offset-lg-2 col-md-5 offset-md-1">
+<h2 align='center'>Regisrtation</h2>
+<div class="contact_form-container">
+<form method="post" align='right'>
+  {% csrf_token %}
+  {% for field in form %}
+  <div>
+    {{ field.errors }}
+    {{ field.label_tag }}
+    {{ field }}
+  </div>
+{% endfor %}
+  <button type="submit" value="Submit">Register</button>
+</form>
+</div>
+</div>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+{% endblock login %}

@@ -1,23 +1,25 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserForm, UserRegistrationForm, ContactForm
+from .forms import UserForm, UserRegistrationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Posy, Categories, Feedback
-from django.views import View
 from django.urls import reverse
 import logging
 from datetime import datetime
+from django.utils import timezone
 
 # posy views
 
 def home(request):
     goods = Posy.objects.all().order_by('-price')[:6]
+    feedbacks = Feedback.objects.all()
     template = loader.get_template('home.html')
     context = {
-        'goods': goods
+        'goods': goods,
+        'feedbacks': feedbacks,
     }
     return HttpResponse(template.render(context, request))
 
@@ -92,25 +94,14 @@ def leave_feedback(request):
         sender = request.POST['sender']
         phone = request.POST['phone']
         message = request.POST['message']
-        user_exists = Feedback.get_client_by_email(sender)
         now = datetime.now()
-        if user_exists:
-            user_exists.message += '\n' + str(message) + '\n' + now.strftime("%m/%d/%Y, %H:%M:%S")
-            user_exists.save()
-        else:
-            new_feedback = Feedback(
-                full_name=full_name, 
-                sender=sender, 
-                phone=phone, 
-                message=str(message) + '\n' + now.strftime("%m/%d/%Y, %H:%M:%S")
-                )
-            new_feedback.save()
+        daytime = now.strftime("%Y-%m-%d, %H:%M")
+        new_feedback = Feedback(
+            full_name=full_name, 
+            sender=sender, 
+            phone=phone, 
+            message=message,
+            daytime = daytime
+        )
+        new_feedback.save()
         return HttpResponseRedirect(reverse('home'))
-    
-def show_feedback(request):
-    feedbacks = Feedback.objects.get(id=1)
-    template = loader.get_template('home.html')
-    context = {
-        'feedbacks': feedbacks
-    }
-    return HttpResponse(template.render(context, request))

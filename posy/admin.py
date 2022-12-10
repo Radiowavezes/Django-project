@@ -9,7 +9,7 @@ class CategoriesAdmin(admin.ModelAdmin):
     list_display = ('category',)
 
 class FeedbackAdmin(admin.ModelAdmin):
-    list_display = ('full_name','phone', 'sender')
+    list_display = ('full_name','phone', 'sender', 'daytime')
 
 admin.site.register(Posy, PosyAdmin)
 admin.site.register(Categories, CategoriesAdmin)

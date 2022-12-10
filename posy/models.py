@@ -80,6 +80,7 @@ class Feedback(models.Model):
     sender = models.EmailField()
     phone = models.IntegerField()
     message = models.TextField(max_length=2000)
+    daytime = models.DateTimeField('Time published: ', auto_now_add=True, editable=True)
     
     @staticmethod
     def get_client_by_email(email):
@@ -89,4 +90,4 @@ class Feedback(models.Model):
             return False
     
     def __str__(self):
-        return f"{self.full_name}{self.sender} - {self.message}"
+        return f"{self.full_name}{self.sender} - {self.message} {self.daytime}"

@@ -1,0 +1,71 @@
+{% block cart %}
+<section>
+  <button id="buttonBasket" title="Go to basket"></button>
+<div class="fruit_section layout_padding col-xl-auto">
+  <div class="container">
+    <div class="heading-container">
+      <h2 align="center">Мій магазин</h2>
+      <hr>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="shop_cart-container">
+      {% for product in products %}
+      <div class="box">
+        <p><img src="{{product.image.url}}" alt=""></p>
+        <p>
+          <h5>
+            {{product.title}} - <strong>{{product.price}}</strong>
+          </h5>
+        </p>
+          <p>{{product.description}}</p>
+          {% if request.user.is_authenticated %}
+          <button class="myButton" unicorn:click="add_item( {{product.pk}} )"> В кошик </button>
+          {%else%}
+          <a class="myButton" href="{% url "login" %}"> В кошик </a>
+          {%endif%}
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+  </div>
+</div>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+    {% if user_products %}
+    <table class="basket">
+      <thead>
+        <tr>
+          <td class="tg-name"><b>Назва</b></td>
+          <td class="tg-0lax"><b>Вартість</b></td>
+        </tr>
+      </thead>
+      {% for product in user_products %}
+      <tr>
+        <td><b>{{product.product.title}}</b> x {{product.quantity}}</td>
+          <td>{{product.total_price}}</td>
+          <td>
+          <button class="myButtonQuantity" unicorn:click="increase_quantity( {{product.pk}} )"> + </button>
+            <button class="myButtonQuantity" unicorn:click="decrease_quantity( {{product.pk}} )"> --</button>
+            <button class="myButtonDelete" unicorn:click="delete_item( {{product.pk}} )">
+          X
+        </button></td>
+      {%endfor%}
+      </tr>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <h3>Всього {{total}}</h3>
+      <a class="myButtonConfirm" href="{% url "confirm" %}">Підтвердити</button>
+    </div>
+  </div>
+    {%else%}
+    <h5>Кошик порожній</h5>
+    {%endif%}
+  </div>
+</section>
+{% endblock cart %}

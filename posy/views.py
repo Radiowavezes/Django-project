@@ -5,7 +5,7 @@ from .forms import UserForm, UserRegistrationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .models import Posy, Categories, Feedback
+from .models import Product, Categories, Feedback
 from django.urls import reverse
 import logging
 from datetime import datetime
@@ -14,22 +14,12 @@ from django.utils import timezone
 # posy views
 
 def home(request):
-    goods = Posy.objects.all().order_by('-price')[:6]
+    products = Product.objects.all().order_by('-price')[:6]
     feedbacks = Feedback.objects.all()
     template = loader.get_template('home.html')
     context = {
-        'goods': goods,
+        'products': products,
         'feedbacks': feedbacks,
-    }
-    return HttpResponse(template.render(context, request))
-
-def shop(request):
-    goods = Posy.objects.all()
-    categories = Categories.objects.all()
-    template = loader.get_template('shop.html')
-    context = {
-        'goods': goods,
-        'categories': categories,
     }
     return HttpResponse(template.render(context, request))
 

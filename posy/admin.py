@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Posy, Categories, Feedback
+from .models import Product, Categories, Feedback
 
 # Register your models here.
-class PosyAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'price')
 
 class CategoriesAdmin(admin.ModelAdmin):
@@ -11,6 +11,6 @@ class CategoriesAdmin(admin.ModelAdmin):
 class FeedbackAdmin(admin.ModelAdmin):
     list_display = ('full_name','phone', 'sender', 'daytime')
 
-admin.site.register(Posy, PosyAdmin)
+admin.site.register(Product, ProductAdmin)
 admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(Feedback, FeedbackAdmin)

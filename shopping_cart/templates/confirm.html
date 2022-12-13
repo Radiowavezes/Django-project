@@ -1,0 +1,3 @@
+{% load unicorn %}
+{% unicorn 'cart' user=request.user.pk products=products%}
+{{basket}}

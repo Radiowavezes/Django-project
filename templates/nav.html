@@ -12,33 +12,27 @@
             <div class="d-flex  flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                  <a class="nav-link" href="{% url "home" %}">Home </a>
+                  <a class="nav-link" href="{% url "home" %}">Головна </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url "shop" %}"> Shop </a>
+                  <a class="nav-link" href="{% url "cart" %}"> Магазин </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Recomendations</a>
+                  <a class="nav-link" href="">Відгуки</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Contact me</a>
+                  <a class="nav-link" href="">Контакти</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                  <a class="nav-link" href="">Cart</a>
+                  <a class="nav-link" href="">Привіт, {{ user.username }}!</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Hi, {{ user.username }}!</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url "logout" %}" action='signout'>Log out</a>
+                  <a class="nav-link" href="{% url "logout" %}" action='signout'>Вийти</a>
                 </li>
                   {% else %}
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url "login" %}">Cart</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url "login" %}">Login</a>
+                    <a class="nav-link" href="{% url "login" %}">Увійти</a>
                   </li>
                   {% endif %}
                 </li>

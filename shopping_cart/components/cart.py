@@ -2,6 +2,8 @@ from django_unicorn.components import UnicornView, QuerySetType
 from django.db.models import F
 from shopping_cart.models import UserItem
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.contrib.auth.models import User
 
 class CartView(UnicornView):
     user_products: QuerySetType[UserItem] = None
@@ -52,7 +54,5 @@ class CartView(UnicornView):
             self.get_total()
         else:
             self.delete_item(product_pk)
-    
-    def confirm(self):
-       return self.user_products
+
     

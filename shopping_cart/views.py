@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from posy.models import Product, Categories
+from django.contrib.auth.models import User
 from .components.cart import CartView
 
 def cart(request):
@@ -12,9 +13,3 @@ def cart(request):
     }
     return render(request, "cart.html", context)
 
-def confirm(request):
-    basket = CartView.user_products
-    context = {
-        'basket': basket
-    }
-    return render(request, "confirm.html", context)

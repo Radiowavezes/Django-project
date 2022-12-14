@@ -1,5 +1,0 @@
-{% extends 'main.html' %}
-{% load unicorn %}
-{% block cart %}
-{% unicorn 'cart' user=request.user.pk products=products%}
-{% endblock cart %}

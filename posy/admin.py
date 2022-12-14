@@ -6,7 +6,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'price')
 
 class CategoriesAdmin(admin.ModelAdmin):
-    list_display = ('category',)
+    list_display = ('id', 'category',)
 
 class FeedbackAdmin(admin.ModelAdmin):
     list_display = ('full_name','phone', 'sender', 'daytime')

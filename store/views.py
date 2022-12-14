@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
@@ -12,10 +13,11 @@ from .models import (
     CheckoutAddress
 )
 from posy.models import Product
-# Create your views here.
+from bot import send_message_to_telegram
+
 class HomeView(ListView):
     model = Product
-    paginate_by = 6
+    paginate_by = 9
     template_name = "store.html"
 
 
@@ -34,14 +36,19 @@ class OrderSummaryView(LoginRequiredMixin, View):
             }
             return render(self.request, 'order_summary.html', context)
         except ObjectDoesNotExist:
-            messages.error(self.request, "You do not have an order")
+            messages.error(self.request, "Ви ще нічого не замовили")
             return redirect("/")
+
 
 class CheckoutView(View):
     def get(self, *args, **kwargs):
         form = CheckoutForm()
+        order = Order.objects.get(user=self.request.user, ordered=False)
         context = {
-            'form': form
+            'form': form,
+            'order': order,
+            'order_items': order.items.all(),
+            'ammount': len(order.items.all()),
         }
         return render(self.request, 'checkout.html', context)
 
@@ -51,32 +58,40 @@ class CheckoutView(View):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
-                street_address = form.cleaned_data.get('street_address')
-                apartment_address = form.cleaned_data.get('apartment_address')
-                country = form.cleaned_data.get('country')
                 zip = form.cleaned_data.get('zip')
-                same_billing_address = form.cleaned_data.get('same_billing_address')
-                save_info = form.cleaned_data.get('save_info')
                 payment_option = form.cleaned_data.get('payment_option')
 
                 checkout_address = CheckoutAddress(
                     user=self.request.user,
-                    street_address=street_address,
-                    apartment_address=apartment_address,
-                    country=country,
-                    zip=zip
+                    zip=zip,
+                    payment_option=payment_option,
                 )
                 checkout_address.save()
                 order.checkout_address = checkout_address
+                order.ordered = True
                 order.save()
-                return redirect('store:checkout')
-            messages.warning(self.request, "Failed Chekout")
+                # name = User.objects.get(pk=order.user.pk)
+                send_message_to_telegram(order, checkout_address, User.objects.get(pk=order.user.pk))
+                # sold = ''
+                # check = 0
+                # for item in order.items.all():
+                #     cost = item.quantity * item.item.price
+                #     sold += str(item) + '-' + str(cost)
+                #     check += item.get_final_price()
+                # sold += f'. Всього {check}'
+                # pay = 'готівкою' if checkout_address == 'C' else 'на картку'
+                # name = User.objects.get(pk=order.user.pk)
+                # bot.bot_message(f'{checkout_address.zip}, {name.first_name}, оплата {pay}: {sold}')
+                
+                return redirect('posy:home')
+            messages.warning(self.request, "Помилка підтвердження замовлення")
             return redirect('store:checkout')
 
         except ObjectDoesNotExist:
-            messages.error(self.request, "You do not have an order")
+            messages.error(self.request, "Ви ще нічого не замовили")
             return redirect("store:order-summary")
-        
+
+
 
 @login_required
 def add_to_cart(request, pk):
@@ -94,18 +109,19 @@ def add_to_cart(request, pk):
         if order.items.filter(item__pk=item.pk).exists():
             order_item.quantity += 1
             order_item.save()
-            messages.info(request, "Added quantity Product")
+            messages.info(request, f"Збільшена кількість {order_item.item.title}")
             return redirect("store:order-summary")
         else:
             order.items.add(order_item)
-            messages.info(request, "Product added to your cart")
+            messages.info(request, f"{order_item.item.title} доданий в кошик")
             return redirect("store:order-summary")
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-        messages.info(request, "Product added to your cart")
+        messages.info(request, f"{order_item.item.title} доданий в кошик")
         return redirect("store:order-summary")
+
 
 @login_required
 def remove_from_cart(request, pk):
@@ -123,14 +139,13 @@ def remove_from_cart(request, pk):
                 ordered=False
             )[0]
             order_item.delete()
-            messages.info(request, "Product \""+order_item.item.title + "\" remove from your cart")
+            messages.info(request, f"{order_item.item.title} видалений з кошика")
             return redirect("store:order-summary")
         else:
-            messages.info(request, "This Product not in your cart")
+            messages.info(request, "Цього товару немає в кошику")
             return redirect("store:product", pk=pk)
     else:
-        #add message doesnt have order
-        messages.info(request, "You do not have an Order")
+        messages.info(request, "Ви ще нічого не замовили")
         return redirect("store:product", pk = pk)
 
 
@@ -154,12 +169,12 @@ def reduce_quantity_item(request, pk):
                 order_item.save()
             else:
                 order_item.delete()
-            messages.info(request, "Product quantity was updated")
+            messages.info(request, f"Кількість {order_item.item.title} змінена")
             return redirect("store:order-summary")
         else:
-            messages.info(request, "This Product not in your cart")
+            messages.info(request, "Цього товару немає в кошику")
             return redirect("store:order-summary")
     else:
         #add message doesnt have order
-        messages.info(request, "You do not have an Order")
+        messages.info(request, "Ви ще нічого не замовили")
         return redirect("store:order-summary")

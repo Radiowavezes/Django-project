@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_unicorn",
     "posy",
-    "shopping_cart",
     "store",
     "django_countries",
 ]

@@ -51,12 +51,20 @@ class CheckoutView(View):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
-                phone = form.cleaned_data.get('street_address')
+                street_address = form.cleaned_data.get('street_address')
+                apartment_address = form.cleaned_data.get('apartment_address')
+                country = form.cleaned_data.get('country')
+                zip = form.cleaned_data.get('zip')
+                same_billing_address = form.cleaned_data.get('same_billing_address')
+                save_info = form.cleaned_data.get('save_info')
                 payment_option = form.cleaned_data.get('payment_option')
 
                 checkout_address = CheckoutAddress(
                     user=self.request.user,
-                    phone=phone,
+                    street_address=street_address,
+                    apartment_address=apartment_address,
+                    country=country,
+                    zip=zip
                 )
                 checkout_address.save()
                 order.checkout_address = checkout_address
@@ -68,7 +76,6 @@ class CheckoutView(View):
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have an order")
             return redirect("store:order-summary")
-
         
 
 @login_required

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django_unicorn",
     "posy",
     "shopping_cart",
+    "store",
+    "django_countries",
 ]
 
 MIDDLEWARE = [

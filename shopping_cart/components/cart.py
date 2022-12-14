@@ -42,7 +42,6 @@ class CartView(UnicornView):
         item = UserItem.objects.get(pk=product_pk)
         item.quantity = F('quantity') + 1
         item.save()
-        self.user_products = UserItem.objects.filter(user=self.user_pk) #?????
         self.get_total()
         
     def decrease_quantity(self, product_pk):
@@ -50,9 +49,9 @@ class CartView(UnicornView):
         if item.quantity > 1:
             item.quantity = F('quantity') - 1
             item.save()
-            self.user_products = UserItem.objects.filter(user=self.user_pk) #?????
             self.get_total()
         else:
             self.delete_item(product_pk)
+
 
     

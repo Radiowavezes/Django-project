@@ -9,7 +9,6 @@ from .models import Product, Categories, Feedback
 from django.urls import reverse
 import logging
 from datetime import datetime
-from django.utils import timezone
 
 # posy views
 

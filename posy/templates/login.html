@@ -4,18 +4,18 @@
 <br></br>
 <br></br>
 <div class="col-lg-4 offset-lg-2 col-md-5 offset-md-1">
-<h2 align='center'>Log In</h2>
 <div class="contact_form-container">
 <form method="post" align='right'>
   {% csrf_token %}
-  {% for field in form %}
+  <h2>Вхід</h2>
   <div>
-    {{ field.errors }}
-    {{ field.label_tag }}
-    {{ field }}
+    Логін: {{ form.username }}
   </div>
-{% endfor %}
-  <button type="submit" value="Submit">Log In</button>&nbsp;&nbsp;&nbsp;<a class="nav-item" href="{% url "signup" %}"> Sign up </a>
+  <div>
+    Пароль: <input type="password" id="id_password" name="password">
+    <p><input type="checkbox" onclick="ShowPass()"> Показати пароль</p>
+  </div>
+  <button type="submit" value="Submit">Увійти</button>&nbsp;&nbsp;&nbsp;<a class="nav-item" href="{% url "signup" %}"> Новий </a>
 </form>
 </div>
 </div>

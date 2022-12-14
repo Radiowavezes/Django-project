@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from posy.models import Product, Categories
 from django.contrib.auth.models import User
-from .components.cart import CartView
+from django.views.generic import View
+from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 
 def cart(request):
     products = Product.objects.all()
@@ -12,4 +14,3 @@ def cart(request):
         'categories': categories,
     }
     return render(request, "cart.html", context)
-

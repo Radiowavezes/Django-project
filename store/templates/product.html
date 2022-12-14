@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+{% block store %}
+<div class="p-4">
+
+    <div class="">
+      <a href="">
+        <span class="">{{ object.category }}</span>
+      </a>
+    </div>
+    <p><img src="{{object.image.url}}" alt=""></p>
+
+     <span>${{ object.price }}</span>
+ 
+    </p>
+
+    <p class="lead font-weight-bold">{{ object.title }}</p>
+
+    <p>{{ object.description }}</p>
+    <p>{{ object.inventory }}</p>
+
+<a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p" >Додати в корзину
+        <i class="fas fa-shopping-cart ml-1"></i>
+    </a>
+
+    {{ object.get_quantity_in_chart }}
+    <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p" >Видалити
+        <i class="fas fa-trash ml-1"></i>
+    </a>
+   
+
+  </div>
+  {% endblock store %}
+
+

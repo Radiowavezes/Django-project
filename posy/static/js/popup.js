@@ -24,3 +24,12 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+function ShowPass() {
+  var x = document.getElementById("id_password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}

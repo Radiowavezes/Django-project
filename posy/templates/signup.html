@@ -4,18 +4,32 @@
 <br></br>
 <br></br>
 <div class="col-lg-4 offset-lg-2 col-md-5 offset-md-1">
-<h2 align='center'>Regisrtation</h2>
+<h2 align='center'>Реєстрація</h2>
 <div class="contact_form-container">
 <form method="post" align='right'>
   {% csrf_token %}
-  {% for field in form %}
   <div>
-    {{ field.errors }}
-    {{ field.label_tag }}
-    {{ field }}
+    {{ form.username.errors }}
+    Логін: {{ form.username }}
   </div>
-{% endfor %}
-  <button type="submit" value="Submit">Register</button>
+  <div>
+    {{ form.password.errors }}
+    Пароль: <input type="password" id="id_password" name="password">
+    <br><input type="checkbox" onclick="ShowPass()"> показати пароль </br>
+  </div>
+  <div>
+    {{ form.email.errors }}
+    E-mail: {{ form.email }}
+  </div>
+  <div>
+    {{ form.first_name.errors }}
+    Ім'я: {{ form.first_name }}
+  </div>
+  <div>
+    {{ form.last_name.errors }}
+    Прізвище: {{ form.last_name }}
+  </div>
+  <button type="submit" value="Submit">Зареєструватися</button>
 </form>
 </div>
 </div>

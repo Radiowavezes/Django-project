@@ -4,26 +4,26 @@
 
     <div class="">
       <a href="">
-        <span class="">{{ object.category }}</span>
+        <span class="">{{ product.category }}</span>
       </a>
     </div>
-    <p><img src="{{object.image.url}}" alt=""></p>
+    <p><img src="{{product.image.url}}" alt=""></p>
 
-     <span><b>{{ object.price }}</b></span>
+     <span><b>{{ product.price }}</b></span>
  
     </p>
 
-    <p class="lead font-weight-bold">{{ object.title }}</p>
+    <p class="lead font-weight-bold">{{ product.title }}</p>
 
-    <p>{{ object.description }}</p>
-    <p>{{ object.inventory }}</p>
+    <p>{{ product.description }}</p>
+    <p>{{ product.inventory }}</p>
 
-<a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p myButton" >Додати в корзину
+<a href="{{ product.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p myButton" >Додати в корзину
         <i class="fas fa-shopping-cart ml-1"></i>
     </a>
 
-    {{ object.get_quantity_in_chart }}
-    <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p myButton bg-danger" >Видалити
+    {{ product.get_quantity_in_chart }}
+    <a href="{{ product.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p myButton bg-danger" >Видалити
         <i class="fas fa-trash ml-1"></i>
     </a>
     <div>

@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% block composition %}
+<div class="container wow fadeIn">
+  <h2 class="my-5 h2">Оберіть компоненти</h2>
+    <div class="row">
+      <div class="col-md-8 mb-4">
+        <div class="card">
+<form method="POST" class="card-body">
+    {% csrf_token %}
+    {%for field in form%}
+    <div class="col-lg-12 col-md-12 mb-4">
+        {{ field }}
+        <label>{{ field.label }}</label>
+        <div class="invalid-feedback">
+            Обов'язкове поле
+          </div>
+        </div>
+        <div class="row">
+        </div>
+        <hr>
+      {%endfor%}
+    <input class="myButton bg-warning" type="submit" value="Відправити">
+</form>
+{% endblock composition %}

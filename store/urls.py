@@ -7,7 +7,8 @@ from store.views import (
     ProductView, 
     HomeView, 
     CheckoutView,
-    OrderSummaryView
+    OrderSummaryView,
+    CreateComposition,
 )
 
 app_name = 'store'
@@ -15,6 +16,7 @@ app_name = 'store'
 urlpatterns = [
     path('', HomeView.as_view(), name='store'),
     path('product/<pk>/', ProductView.as_view(), name='product'),
+    path('create_composition', CreateComposition.as_view(), name='create_composition'),
     path('order-summary', OrderSummaryView.as_view(), name='order-summary'),
     path('checkout', CheckoutView.as_view(), name='checkout'),
     path('add-to-cart/<pk>/', add_to_cart, name='add-to-cart'),

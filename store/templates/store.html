@@ -11,9 +11,12 @@
         </h2>
       </div>
     </div>
+    {%for cat in categpries%}
+    {{cat}}
+    {%endfor%}
     <div class="container-fluid">
       <div class="fruit_container">
-        {% for item in page_obj %}
+        {% for item in goods %}
         <div class="box">
           <img src="{{item.image.url}}" alt="">
           <div class="link_box">

@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserForm, UserRegistrationForm
+from .forms import UserForm, UserRegistrationForm, CallbackForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .models import Product, Categories, Feedback
+from .models import Product, Categories, Feedback, Callback
 from django.urls import reverse
 import logging
 from datetime import datetime
+from telegram.bot import send_callback_number_to_telegram
 
 # posy views
 
@@ -16,11 +17,21 @@ def home(request):
     products = Product.objects.all().order_by('-price')[:6]
     feedbacks = Feedback.objects.all()
     template = loader.get_template('home.html')
+    form = CallbackForm()
     context = {
         'products': products,
         'feedbacks': feedbacks,
+        'form': form
     }
+    if request.method == "POST":
+        phone_number = request.POST['phone_number']
+        callback = Callback(phone_number=phone_number)
+        callback.save()
+        send_callback_number_to_telegram(callback.phone_number)
+        return redirect('posy:home')
+        
     return HttpResponse(template.render(context, request))
+
 
 # authentication views
 
@@ -38,7 +49,7 @@ def signin(request):
     		    password=password
         )
         if user is None:
-            return HttpResponse("Invalid credentials.")
+            return HttpResponse("Користувач з такими даними відсутній")
         
         login(request, user)
         return redirect('/')

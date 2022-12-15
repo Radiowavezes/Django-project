@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
-from .models import Feedback
+from .models import Feedback, Callback
     
 class UserForm(forms.ModelForm):
     class Meta:
@@ -27,3 +27,8 @@ class ContactForm(forms.Form):
             'phone', 
             'message', 
         ]
+
+class CallbackForm(forms.Form):
+    class Meta:
+        model = Callback
+        fields = '__all__'

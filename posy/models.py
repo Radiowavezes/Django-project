@@ -26,7 +26,7 @@ class Product(models.Model):
         if category_id:
             return Product.objects.filter(category=category_id)
         else:
-            return Product.get_all_goods()
+            return Product.objects.all()
     
     def __str__(self):
         return self.title
@@ -53,13 +53,10 @@ class Feedback(models.Model):
     phone = models.IntegerField()
     message = models.TextField(max_length=2000)
     daytime = models.DateTimeField('Time published: ', auto_now_add=True, editable=True)
-    
-    @staticmethod
-    def get_client_by_email(email):
-        try:
-            return Feedback.objects.get(sender=email)
-        except Feedback.DoesNotExist:
-            return False
-    
+ 
     def __str__(self):
         return f"{self.full_name}{self.sender} - {self.message} {self.daytime}"
+
+class Callback(models.Model):
+    phone_number = models.CharField(max_length=10, null=False, blank=False)
+    created = models.DateTimeField(auto_now_add=True)

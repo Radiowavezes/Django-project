@@ -32,10 +32,11 @@
 {% include 'header.html'%}
 {% include 'nav.html'%}
 {% block "content" %}{% endblock "content" %}
+<script src="{% static '/js/popup.js' %}"></script>
 {% block login %}{% endblock login %}
 {% block checkout %}{% endblock checkout %}
 {% block cart %}{% endblock cart %}
+{% block composition %}{% endblock composition %}
 {% block store %}{% endblock store %}
-{% include 'info.html'%}
 <script src="{% static '/js/popup.js' %}"></script>
-{% include 'footer.html'%}
+{% include 'footer.html' %}

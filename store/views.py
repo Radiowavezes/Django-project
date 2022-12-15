@@ -6,24 +6,45 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from django.utils import timezone
-from .forms import CheckoutForm
+from .forms import CheckoutForm, CreateCompositionForm
+from posy.models import Product, Categories
+from telegram.bot import send_order_to_telegram, send_composition_to_telegram
 from .models import (
     Order,
     OrderItem,
-    CheckoutAddress
+    CheckoutAddress,
 )
-from posy.models import Product
-from bot import send_message_to_telegram
+
 
 class HomeView(ListView):
     model = Product
     paginate_by = 9
+    context_object_name = 'goods'
     template_name = "store.html"
 
 
 class ProductView(DetailView):
     model = Product
+    context_object_name = 'product'
     template_name = "product.html"
+
+
+class CreateComposition(View):
+    def get(self, *args, **kwargs):
+        form = CreateCompositionForm()
+        context = {
+            'form': form,
+        }
+        return render(self.request, 'create_composition.html', context)
+
+    def post(self, *args, **kwargs):
+        form = CreateCompositionForm(self.request.POST or None)
+        if form.is_valid():
+            form.save()
+            send_composition_to_telegram(form)
+            return redirect('posy:home')
+        messages.warning(self.request, "Помилка відправки форми")
+        return redirect('store:create_composition')
     
 
 class OrderSummaryView(LoginRequiredMixin, View):
@@ -32,7 +53,7 @@ class OrderSummaryView(LoginRequiredMixin, View):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             context = {
-                'object' : order
+                'order' : order
             }
             return render(self.request, 'order_summary.html', context)
         except ObjectDoesNotExist:
@@ -70,19 +91,7 @@ class CheckoutView(View):
                 order.checkout_address = checkout_address
                 order.ordered = True
                 order.save()
-                # name = User.objects.get(pk=order.user.pk)
-                send_message_to_telegram(order, checkout_address, User.objects.get(pk=order.user.pk))
-                # sold = ''
-                # check = 0
-                # for item in order.items.all():
-                #     cost = item.quantity * item.item.price
-                #     sold += str(item) + '-' + str(cost)
-                #     check += item.get_final_price()
-                # sold += f'. Всього {check}'
-                # pay = 'готівкою' if checkout_address == 'C' else 'на картку'
-                # name = User.objects.get(pk=order.user.pk)
-                # bot.bot_message(f'{checkout_address.zip}, {name.first_name}, оплата {pay}: {sold}')
-                
+                send_order_to_telegram(order, checkout_address, User.objects.get(pk=order.user.pk))
                 return redirect('posy:home')
             messages.warning(self.request, "Помилка підтвердження замовлення")
             return redirect('store:checkout')
@@ -90,7 +99,6 @@ class CheckoutView(View):
         except ObjectDoesNotExist:
             messages.error(self.request, "Ви ще нічого не замовили")
             return redirect("store:order-summary")
-
 
 
 @login_required
@@ -178,3 +186,4 @@ def reduce_quantity_item(request, pk):
         #add message doesnt have order
         messages.info(request, "Ви ще нічого не замовили")
         return redirect("store:order-summary")
+    

@@ -15,10 +15,21 @@
           <img src="/static/images/shop-img.jpg" alt="">
         </div>
         <div class="btn-box">
-          <a href="">
+          <a href="{%url "store:create_composition"%}">
             Створити свою композицію
           </a>
         </div>
+        <br></br>
+      <div class="col-md-8 col-lg-9">
+        <div class="info_form">
+          <form action=""  method="POST">
+            {%csrf_token%}
+            <input method="POST" type="text" placeholder="Залиште свій телефон" value="{{form}}" name="phone_number" required id="id_phone_number">
+            <input class="myButton" type="submit" value="Передзвоніть мені">
+          </form>
+        </div>
+      </div>
+    </div>
       </div>
     </div>
   </section>

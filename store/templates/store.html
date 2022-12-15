@@ -36,17 +36,22 @@
     </div>
     <div class="pagination">
         <span class="step-links">
+          <p>
+            <span class="current">
+                Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}
+            </span>
+          </p>
             {% if page_obj.has_previous %}
                 <a href="?page=1">&laquo; Перша</a>
-                <a href="?page={{ page_obj.previous_page_number }}">Попередня</a>
+                <a href="?page={{ page_obj.previous_page_number }}">&laquo; Попередня</a>
             {% endif %}
-    
-            <span class="current">
-                Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}.
-            </span>
-    
+            <p>
+              {% for page in page_obj.paginator%}
+              <a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+              {% endfor %}
+            </p>  
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Наступна</a>
+                <a href="?page={{ page_obj.next_page_number }}">Наступна &raquo;</a>
                 <a href="?page={{ page_obj.paginator.num_pages }}">Остання &raquo;</a>
             {% endif %}
         </span>

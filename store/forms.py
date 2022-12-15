@@ -15,19 +15,6 @@ class CheckoutForm(forms.Form):
         choices=PAYMENT
         )
 
-class CreateCompositionFormMixin(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(CreateCompositionFormMixin, self).__init__(*args, **kwargs)
-        self.user = kwargs.pop('user')
-
-    def save(self, commit=True):
-        object = super(CreateCompositionFormMixin, self).save(commit=False)
-        object.user = self.user
-        if commit:
-            return object.save()
-        else:
-            return object
-
 
 class CreateCompositionForm(forms.ModelForm):
     class Meta:

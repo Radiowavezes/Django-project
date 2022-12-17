@@ -6,4 +6,4 @@ class Callback(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.phone_number, self.created
+        return f'{self.phone_number} - {self.created}'

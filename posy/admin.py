@@ -34,8 +34,8 @@ class CallbackAdmin(admin.ModelAdmin):
         "phone_number",
         "created",
     )
-
-
+    
+    
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(Feedback, FeedbackAdmin)

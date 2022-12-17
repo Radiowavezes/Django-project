@@ -9,4 +9,4 @@ class Feedback(models.Model):
     daytime = models.DateTimeField("Time published: ", auto_now_add=True, editable=True)
 
     def __str__(self):
-        return {self.full_name}, {self.daytime}
+        return f'{self.full_name} {self.daytime}'

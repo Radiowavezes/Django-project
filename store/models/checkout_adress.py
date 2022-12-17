@@ -18,4 +18,4 @@ class CheckoutAddress(models.Model):
     )
 
     def __str__(self):
-        return self.user.username, self.zip
+        return self.user.username

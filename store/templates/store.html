@@ -11,9 +11,12 @@
         </h2>
       </div>
     </div>
-    {%for cat in categpries%}
-    {{cat}}
+    <form method="GET" >
+      {%csrf_token%}
+      {%for cat in categories%}
+      <a href="?choice={{ cat.id }}" name="choice"/>{{cat}}</a>
     {%endfor%}
+  </form>
     <div class="container-fluid">
       <div class="fruit_container">
         {% for item in goods %}
@@ -42,17 +45,17 @@
             </span>
           </p>
             {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; Перша</a>
-                <a href="?page={{ page_obj.previous_page_number }}">&laquo; Попередня</a>
+                <a href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page=1">&laquo; Перша</a>
+                <a href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ page_obj.previous_page_number }}">&laquo; Попередня</a>
             {% endif %}
             <p>
               {% for page in page_obj.paginator%}
-              <a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+              <a href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ forloop.counter }}">{{ forloop.counter }}</a>
               {% endfor %}
             </p>  
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Наступна &raquo;</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Остання &raquo;</a>
+                <a href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ page_obj.next_page_number }}">Наступна &raquo;</a>
+                <a href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ page_obj.paginator.num_pages }}">Остання &raquo;</a>
             {% endif %}
         </span>
     </div>

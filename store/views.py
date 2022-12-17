@@ -9,6 +9,7 @@ from django.utils import timezone
 from .forms import CheckoutForm, CreateCompositionForm
 from posy.models import Product, Categories
 from telegram.bot import send_order_to_telegram, send_composition_to_telegram
+from django.core.paginator import Paginator
 from .models import (
     Order,
     OrderItem,
@@ -21,6 +22,18 @@ class HomeView(ListView):
     paginate_by = 9
     context_object_name = 'goods'
     template_name = "store.html"
+    
+    def get_queryset(self):
+        if 'choice' in self.request.GET:
+            choice = self.request.GET['choice']
+            return Product.objects.filter(category_id=choice)
+        else:
+            return Product.objects.all()
+        
+    def get_context_data(self,**kwargs):
+        context = super(HomeView,self).get_context_data(**kwargs)
+        context['categories']=Categories.objects.all()
+        return context
 
 
 class ProductView(DetailView):

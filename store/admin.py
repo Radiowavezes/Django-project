@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import OrderItem, Order, CheckoutAddress, CreateComposition
+from store.models.order import Order
+from store.models.order_item import OrderItem
+from store.models.checkout_adress import CheckoutAddress
+from store.models.composition import CreateComposition
+
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id','user', 'ordered_date', 'ordered')

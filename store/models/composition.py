@@ -4,7 +4,7 @@ from django.db import models
 class CreateComposition(models.Model):
     name = models.CharField(max_length=20, default="", verbose_name="Ім'я")
     zip = models.CharField(
-        max_length=10, default="", verbose_name="+380", null=False, blank=False
+        max_length=10, default="", verbose_name="Телефон", null=False, blank=False
     )
     color = models.CharField(max_length=20, default="", verbose_name="Кольорова гамма")
     fruit = models.BooleanField(default=False, verbose_name="Фрукти")

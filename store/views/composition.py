@@ -1,6 +1,5 @@
 from store.forms.composition import CreateCompositionForm
 from django.views.generic import View
-from django.contrib import messages
 from django.shortcuts import render, redirect
 from telegram.bot import send_composition_to_telegram
 
@@ -19,5 +18,4 @@ class CreateComposition(View):
             form.save()
             send_composition_to_telegram(form)
             return redirect("posy:home")
-        messages.warning(self.request, "Помилка відправки форми")
         return redirect("store:create_composition")

@@ -6,7 +6,6 @@ from django.shortcuts import render, redirect
 from store.models.checkout_adress import CheckoutAddress
 from telegram.bot import send_order_to_telegram
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib import messages
 
 
 class CheckoutView(View):
@@ -43,9 +42,7 @@ class CheckoutView(View):
                     order, checkout_address, User.objects.get(pk=order.user.pk)
                 )
                 return redirect("posy:home")
-            messages.warning(self.request, "Помилка підтвердження замовлення")
             return redirect("store:checkout")
 
         except ObjectDoesNotExist:
-            messages.error(self.request, "Ви ще нічого не замовили")
             return redirect("store:order-summary")

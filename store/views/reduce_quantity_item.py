@@ -3,7 +3,6 @@ from store.models.order_item import OrderItem
 from store.models.order import Order
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
-from django.contrib import messages
 
 
 @login_required
@@ -21,11 +20,8 @@ def reduce_quantity_item(request, pk):
                 order_item.save()
             else:
                 order_item.delete()
-            messages.info(request, f"Кількість {order_item.item.title} змінена")
             return redirect("store:order-summary")
         else:
-            messages.info(request, "Цього товару немає в кошику")
             return redirect("store:order-summary")
     else:
-        messages.info(request, "Ви ще нічого не замовили")
         return redirect("store:order-summary")

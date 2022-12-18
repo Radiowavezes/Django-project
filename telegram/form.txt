@@ -1,0 +1,182 @@
+<tr>
+    <th><label for="id_name">Ім&#x27;я:</label></th>
+    <td>
+      
+      <input type="text" name="name" value="Євгеній Вікторович" maxlength="20" required id="id_name">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_zip">+380:</label></th>
+    <td>
+      
+      <input type="text" name="zip" value="0994245587" maxlength="10" required id="id_zip">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_color">Кольорова гамма:</label></th>
+    <td>
+      
+      <input type="text" name="color" value="блакитна, зелена" maxlength="20" required id="id_color">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_fruit">Фрукти:</label></th>
+    <td>
+      
+      <input type="checkbox" name="fruit" id="id_fruit" checked>
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_candies">Цукерки:</label></th>
+    <td>
+      
+      <input type="checkbox" name="candies" id="id_candies" checked>
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_vegitables">Овочі:</label></th>
+    <td>
+      
+      <input type="checkbox" name="vegitables" id="id_vegitables" checked>
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_cheese">Сири:</label></th>
+    <td>
+      
+      <input type="checkbox" name="cheese" id="id_cheese">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_sausages">Ковбаси:</label></th>
+    <td>
+      
+      <input type="checkbox" name="sausages" id="id_sausages">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_alcohol">Алкоголь:</label></th>
+    <td>
+      
+      <input type="checkbox" name="alcohol" id="id_alcohol">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_snacks">Снеки:</label></th>
+    <td>
+      
+      <input type="checkbox" name="snacks" id="id_snacks">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_cones">Шишки:</label></th>
+    <td>
+      
+      <input type="checkbox" name="cones" id="id_cones">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_needles">Хвоя:</label></th>
+    <td>
+      
+      <input type="checkbox" name="needles" id="id_needles">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_christmas_decorations">Новорічні прикраси:</label></th>
+    <td>
+      
+      <input type="checkbox" name="christmas_decorations" id="id_christmas_decorations">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_joke_decorations">Штучні прикраси:</label></th>
+    <td>
+      
+      <input type="checkbox" name="joke_decorations" id="id_joke_decorations">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_handmade_decorations">Прикраси ручної роботи:</label></th>
+    <td>
+      
+      <input type="checkbox" name="handmade_decorations" id="id_handmade_decorations">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_flowers">Живі квіти або листя:</label></th>
+    <td>
+      
+      <input type="checkbox" name="flowers" id="id_flowers">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_fake_flowers">Штучні квіти:</label></th>
+    <td>
+      
+      <input type="checkbox" name="fake_flowers" id="id_fake_flowers">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_message">Інші побажання:</label></th>
+    <td>
+      
+      <textarea name="message" cols="40" rows="10" maxlength="2000" required id="id_message">
+Хай Ваш корабель життя завжди пливе в правильному напрямку, тихо погойдуючись на хвилях: без штормів і бурь! І куди б Ви не повернули свій штурвал, хай Вас завжди зустрічає вдача, радість й успіх! З Днем народження!</textarea>
+      
+      
+        
+      
+    </td>
+  </tr>

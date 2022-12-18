@@ -1,0 +1,19 @@
+<input type="text" name="name" value="Євгеній Вікторович" maxlength="20" required id="id_name">
+<input type="text" name="zip" value="0996790009" maxlength="10" required id="id_zip">
+<input type="text" name="color" value="блакитна, червона" maxlength="20" required id="id_color">
+<input type="checkbox" name="fruit" id="id_fruit"><input type="checkbox" name="candies" id="id_candies">
+<input type="checkbox" name="vegitables" id="id_vegitables">
+<input type="checkbox" name="cheese" id="id_cheese">
+<input type="checkbox" name="sausages" id="id_sausages" checked>
+<input type="checkbox" name="alcohol" id="id_alcohol">
+<input type="checkbox" name="snacks" id="id_snacks">
+<input type="checkbox" name="cones" id="id_cones">
+<input type="checkbox" name="needles" id="id_needles">
+<input type="checkbox" name="christmas_decorations" id="id_christmas_decorations">
+<input type="checkbox" name="joke_decorations" id="id_joke_decorations" checked>
+<input type="checkbox" name="handmade_decorations" id="id_handmade_decorations">
+<input type="checkbox" name="flowers" id="id_flowers">
+<input type="checkbox" name="fake_flowers" id="id_fake_flowers">
+<textarea name="message" cols="40" rows="10" maxlength="2000" required id="id_message">
+Хай Ваш корабель життя завжди пливе в правильному напрямку, тихо погойдуючись на хвилях: без штормів і бурь! І куди б Ви не повернули свій штурвал, хай Вас завжди зустрічає вдача, радість й успіх! З Днем народження!
+</textarea>

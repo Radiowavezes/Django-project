@@ -18,7 +18,7 @@
                   <a class="nav-link" href="{% url "store:store" %}"> Магазин </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Оплата і контакти</a>
+                  <a class="nav-link" href="#footer">Контакти</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
@@ -26,12 +26,15 @@
                 </li>
                 <li class="nav-item">
                 <li class="nav-item">
-                  <a class="nav-link" href="">Привіт, {{ user.username }}!</a>
+                  <a class="nav-link">Привіт, {{ user.username }}!</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url "posy:logout" %}" action='signout'>Вийти</a>
                 </li>
                   {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{%url 'posy:login' %}">Кошик</a>
+                  </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{% url "posy:login" %}">Увійти</a>
                   </li>

@@ -10,13 +10,15 @@
           Готові пропозиції
         </h2>
       </div>
+      <form method="GET">
+        {%csrf_token%}
+        <h5>
+        {%for cat in categories%}
+        <a href="?choice={{ cat.id }}" name="choice"/><b>{{cat}}</b>&nbsp;&nbsp;</a>
+      {%endfor%}
+    </h5>
+    </form>
     </div>
-    <form method="GET" >
-      {%csrf_token%}
-      {%for cat in categories%}
-      <a href="?choice={{ cat.id }}" name="choice"/>{{cat}}</a>
-    {%endfor%}
-  </form>
     <div class="container-fluid">
       <div class="fruit_container">
         {% for item in goods %}
@@ -37,6 +39,7 @@
         </div>
         {% endfor %}
     </div>
+    <b>
     <div class="pagination">
         <span class="step-links">
           <p>
@@ -59,6 +62,7 @@
             {% endif %}
         </span>
     </div>
+  </b>
   </section>
   </html>
 {% endblock "content" %}

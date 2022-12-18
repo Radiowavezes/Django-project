@@ -1,22 +1,26 @@
 import telebot
+from bs4 import BeautifulSoup
 
 
 def bot_message(data):
     botToken = "5902264915:AAGG-fHUI0sZpiO6NRbArXVpjY93tCt2V0Y"
     bot = telebot.TeleBot(botToken)
     chat_id = "245495541"
+    
     return bot.send_message(chat_id=chat_id, text=data)
 
 
 def send_order_to_telegram(obj, adress, name):
     sold = ""
     check = 0
+    
     for item in obj.items.all():
         cost = item.quantity * item.item.price
         sold += str(item) + "-" + str(cost) + ", "
         check += item.get_final_price()
-    # sold += f'. Всього {check}'
+        
     pay = "готівкою" if adress.payment_option == "C" else "на картку"
+    
     bot_message(
         f"""
 У тебе нове замовлення: 
@@ -30,29 +34,36 @@ def send_order_to_telegram(obj, adress, name):
 
 
 def send_composition_to_telegram(form):
-    message = ""
-    ingredients = ()
-    for field in form:
-        if str(field).split()[-1] == "checked>":
-            ingredients += (
-                str(field.label_tag().split(">")[1].split("<")[0]).strip(":"),
-            )
-        elif str(field).split()[1].split('"')[1] == "text":
-            message += (
-                str(field).strip("<>").split("value=")[1].split("maxlength=")[0] + "*"
-            )
-        elif str(field).split()[1].split('"')[1] == "message":
-            text = str(field).strip("<>").split(">")[1].split("<")[0]
-    new_message = [word[1 : len(word) - 2] for word in message.split("*")]
-    name, phone, color, wishes = new_message
+    with open("message.txt", "w+", encoding="UTF-8") as outf:
+        outf.write(str(form))
+        outf.seek(0)
+
+        params = []
+        ingredients = ()
+
+        for line in outf:
+            soup = BeautifulSoup(line, "lxml")
+            if soup.label:
+                name = soup.label.string[:-1]
+            if soup.input:
+                if soup.input.get("type") == "checkbox":
+                    if soup.input.get("checked") == "":
+                        ingredients += (name,)
+                elif soup.input.get("type") == "text":
+                    params.append((name, soup.input.get("value")))
+
+        outf.seek(0)
+
+        hit = BeautifulSoup(outf, "lxml")
+        message = hit.find(attrs={"id": "id_message"}).contents
+
     bot_message(
-        f"""У тебе новий запит на створення композиції: 
-{name}
-{phone}
-Кольорова гама: {color}
-Побажання/призначення: {text.lstrip()}
-Бажані ігрідієнти: {ingredients}
-    """
+        f""" У тебе новий запит на створення композиції: 
+{params[0][0]}:  {params[0][1]}
+{params[1][0]}:  {params[1][1]}
+{params[2][0]}:  {params[2][1]}
+Бажані складові:  {ingredients}
+Побажання/призначення: {message[0].strip()}"""
     )
 
 

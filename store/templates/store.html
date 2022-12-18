@@ -1,6 +1,5 @@
 {% extends 'main.html' %}
 {% block "content" %}
-<!DOCTYPE html>
 <html>
 <section class="fruit_section layout_padding">
     <div class="container">
@@ -14,7 +13,7 @@
         {%csrf_token%}
         <h5>
         {%for cat in categories%}
-        <a href="?choice={{ cat.id }}" name="choice"/><b>{{cat}}</b>&nbsp;&nbsp;</a>
+        <a href="?choice={{ cat.id }}" name="choice" class="myButton"/><b>{{cat}}</b>&nbsp;&nbsp;</a>
       {%endfor%}
     </h5>
     </form>
@@ -40,25 +39,25 @@
         {% endfor %}
     </div>
     <b>
-    <div class="pagination">
-        <span class="step-links">
+    <div class="container-fluid">
+        <span class="link-box">
           <p>
-            <span class="current">
+            <span class="">
                 Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}
             </span>
           </p>
             {% if page_obj.has_previous %}
-                <a href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page=1">&laquo; Перша</a>
-                <a href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ page_obj.previous_page_number }}">&laquo; Попередня</a>
+                <a style="display: inline-block; background-color:#DCDCDC;color: white;padding: 15px 25px;" href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page=1">&nbsp;<<&nbsp;</a>
+                <a style="display: inline-block; background-color:#DCDCDC;color: white;padding: 15px 25px;" href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ page_obj.previous_page_number }}">&nbsp;Попередня&nbsp;</a>
             {% endif %}
-            <p>
+
               {% for page in page_obj.paginator%}
-              <a href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ forloop.counter }}">{{ forloop.counter }}</a>
+              <a class="btn" style="display: inline-block; background-color:#A9A9A9;color: white;padding: 15px 25px;" href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ forloop.counter }}">{{ forloop.counter }}</a>
               {% endfor %}
-            </p>  
+
             {% if page_obj.has_next %}
-                <a href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ page_obj.next_page_number }}">Наступна &raquo;</a>
-                <a href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ page_obj.paginator.num_pages }}">Остання &raquo;</a>
+                <a style="display: inline-block; background-color:#DCDCDC;color: white;padding: 15px 25px;" href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ page_obj.next_page_number }}">&nbsp;Наступна&nbsp;</a>
+                <a style="display: inline-block; background-color:#DCDCDC;color: white;padding: 15px 25px;" href="{% if 'choice' in request.GET %}?choice={{request.GET.choice}}&{% else %}?{% endif %}page={{ page_obj.paginator.num_pages }}">&nbsp;>>&nbsp;</a>
             {% endif %}
         </span>
     </div>

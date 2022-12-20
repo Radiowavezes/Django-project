@@ -3,9 +3,8 @@
 <div class="p-4" align='center'>
 
     <div class="">
-      <a href="">
-        <span class="">{{ product.category }}</span>
-      </a>
+        <span style="display: inline-block; background-color:grey;color: white;">&nbsp;&nbsp;{{ product.category }}&nbsp;&nbsp;</span>
+      <p></p>
     </div>
     <p><img src="{{product.image.url}}" alt=""></p>
 
@@ -23,9 +22,9 @@
     </a>
 
     {{ product.get_quantity_in_chart }}
-    <a href="{{ product.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p myButton bg-danger" >Видалити
+    {% comment %} <a href="{{ product.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p myButton bg-danger" >Видалити
         <i class="fas fa-trash ml-1"></i>
-    </a>
+    </a> {% endcomment %}
     <div>
     {% if messages %}
     <ul class="messages">

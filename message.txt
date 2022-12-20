@@ -1,0 +1,182 @@
+<tr>
+    <th><label for="id_name">Ім&#x27;я:</label></th>
+    <td>
+      
+      <input type="text" name="name" value="Анастасия Бабенко" maxlength="20" required id="id_name">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_zip">Телефон:</label></th>
+    <td>
+      
+      <input type="text" name="zip" value="0664561253" maxlength="10" required id="id_zip">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_color">Кольорова гамма:</label></th>
+    <td>
+      
+      <input type="text" name="color" value="біла" maxlength="20" required id="id_color">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_fruit">Фрукти:</label></th>
+    <td>
+      
+      <input type="checkbox" name="fruit" style="width:20px;height:20px;" id="id_fruit">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_candies">Цукерки:</label></th>
+    <td>
+      
+      <input type="checkbox" name="candies" style="width:20px;height:20px;" id="id_candies">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_vegitables">Овочі:</label></th>
+    <td>
+      
+      <input type="checkbox" name="vegitables" style="width:20px;height:20px;" id="id_vegitables">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_cheese">Сири:</label></th>
+    <td>
+      
+      <input type="checkbox" name="cheese" style="width:20px;height:20px;" id="id_cheese">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_sausages">Ковбаси:</label></th>
+    <td>
+      
+      <input type="checkbox" name="sausages" style="width:20px;height:20px;" id="id_sausages">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_alcohol">Алкоголь:</label></th>
+    <td>
+      
+      <input type="checkbox" name="alcohol" style="width:20px;height:20px;" id="id_alcohol">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_snacks">Снеки:</label></th>
+    <td>
+      
+      <input type="checkbox" name="snacks" style="width:20px;height:20px;" id="id_snacks" checked>
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_cones">Шишки:</label></th>
+    <td>
+      
+      <input type="checkbox" name="cones" style="width:20px;height:20px;" id="id_cones">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_needles">Хвоя:</label></th>
+    <td>
+      
+      <input type="checkbox" name="needles" style="width:20px;height:20px;" id="id_needles" checked>
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_christmas_decorations">Новорічні прикраси:</label></th>
+    <td>
+      
+      <input type="checkbox" name="christmas_decorations" style="width:20px;height:20px;" id="id_christmas_decorations">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_joke_decorations">Штучні прикраси:</label></th>
+    <td>
+      
+      <input type="checkbox" name="joke_decorations" style="width:20px;height:20px;" id="id_joke_decorations">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_handmade_decorations">Прикраси ручної роботи:</label></th>
+    <td>
+      
+      <input type="checkbox" name="handmade_decorations" style="width:20px;height:20px;" id="id_handmade_decorations">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_flowers">Живі квіти або листя:</label></th>
+    <td>
+      
+      <input type="checkbox" name="flowers" style="width:20px;height:20px;" id="id_flowers">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_fake_flowers">Штучні квіти:</label></th>
+    <td>
+      
+      <input type="checkbox" name="fake_flowers" style="width:20px;height:20px;" id="id_fake_flowers" checked>
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_message">Інші побажання:</label></th>
+    <td>
+      
+      <textarea name="message" cols="40" rows="10" maxlength="2000" required id="id_message">
+весілля</textarea>
+      
+      
+        
+      
+    </td>
+  </tr>

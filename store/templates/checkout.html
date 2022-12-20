@@ -75,14 +75,14 @@
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
               <h6 class="my-0">{{item.item.title}}</h6>
-              <small class="text-muted">{{item.item.description}}</small>
+              <small class="text-muted">{{item.quantity}} x {{item.item.price}} грн</small>
             </div>
-            <span class="text-muted">{{item.item.price}} грн</span>
+            <span class="text-muted">{{item.get_total_item_price}} грн</span>
           </li>
           {%endfor%}
           <li class="list-group-item d-flex justify-content-between">
             <span>Всього</span>
-            <strong>{{order.get_total_price}}</strong>
+            <strong>{{order.get_total_price}} грн</strong>
           </li>
         </ul>
         <!-- Cart -->

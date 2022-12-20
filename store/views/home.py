@@ -13,8 +13,7 @@ class HomeView(ListView):
         if "choice" in self.request.GET:
             choice = self.request.GET["choice"]
             return Product.objects.filter(category_id=choice)
-        else:
-            return Product.objects.all()
+        return Product.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)

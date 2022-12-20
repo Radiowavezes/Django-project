@@ -20,4 +20,4 @@ def leave_feedback(request):
             daytime=daytime,
         )
         new_feedback.save()
-        return HttpResponseRedirect(reverse("home"))
+        return HttpResponseRedirect(reverse("posy:home"))

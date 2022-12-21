@@ -2,7 +2,7 @@
     <th><label for="id_name">Ім&#x27;я:</label></th>
     <td>
       
-      <input type="text" name="name" value="Анастасия Бабенко" maxlength="20" required id="id_name">
+      <input type="text" name="name" value="Jane" maxlength="20" required id="id_name">
       
       
     </td>
@@ -12,7 +12,7 @@
     <th><label for="id_zip">Телефон:</label></th>
     <td>
       
-      <input type="text" name="zip" value="0664561253" maxlength="10" required id="id_zip">
+      <input type="text" name="zip" value="0994245587" maxlength="10" required id="id_zip">
       
       
     </td>
@@ -22,7 +22,7 @@
     <th><label for="id_color">Кольорова гамма:</label></th>
     <td>
       
-      <input type="text" name="color" value="біла" maxlength="20" required id="id_color">
+      <input type="text" name="color" value="блакитна, зелена" maxlength="20" required id="id_color">
       
       
     </td>
@@ -32,7 +32,7 @@
     <th><label for="id_fruit">Фрукти:</label></th>
     <td>
       
-      <input type="checkbox" name="fruit" style="width:20px;height:20px;" id="id_fruit">
+      <input type="checkbox" name="fruit" style="width:20px;height:20px;" id="id_fruit" checked>
       
       
     </td>
@@ -42,7 +42,7 @@
     <th><label for="id_candies">Цукерки:</label></th>
     <td>
       
-      <input type="checkbox" name="candies" style="width:20px;height:20px;" id="id_candies">
+      <input type="checkbox" name="candies" style="width:20px;height:20px;" id="id_candies" checked>
       
       
     </td>
@@ -52,7 +52,7 @@
     <th><label for="id_vegitables">Овочі:</label></th>
     <td>
       
-      <input type="checkbox" name="vegitables" style="width:20px;height:20px;" id="id_vegitables">
+      <input type="checkbox" name="vegitables" style="width:20px;height:20px;" id="id_vegitables" checked>
       
       
     </td>
@@ -92,7 +92,7 @@
     <th><label for="id_snacks">Снеки:</label></th>
     <td>
       
-      <input type="checkbox" name="snacks" style="width:20px;height:20px;" id="id_snacks" checked>
+      <input type="checkbox" name="snacks" style="width:20px;height:20px;" id="id_snacks">
       
       
     </td>
@@ -162,7 +162,7 @@
     <th><label for="id_fake_flowers">Штучні квіти:</label></th>
     <td>
       
-      <input type="checkbox" name="fake_flowers" style="width:20px;height:20px;" id="id_fake_flowers" checked>
+      <input type="checkbox" name="fake_flowers" style="width:20px;height:20px;" id="id_fake_flowers">
       
       
     </td>
@@ -173,7 +173,7 @@
     <td>
       
       <textarea name="message" cols="40" rows="10" maxlength="2000" required id="id_message">
-весілля</textarea>
+повідомленяя</textarea>
       
       
         

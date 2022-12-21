@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,9 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-urobb=xcf-j11djvu3u0a@2oaz_6imm%eekqzsaqj@4b#^euvh"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["3.65.34.9", "127.0.0.1", "posyshop.pp.ua"]
+CSRF_TRUSTED_ORIGINS = ["https://*.posyshop.pp.ua"]
 
 
 # Application definition

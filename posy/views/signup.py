@@ -3,6 +3,7 @@ from posy.forms.user_registration import UserRegistrationForm
 from django.http import HttpResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.db.utils import IntegrityError
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 import logging
@@ -25,7 +26,7 @@ def signup(request):
         try:
             newuser.save()
             login(request, authenticate(username=username, password=password))
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("posy:index"))
         except Exception as error:
             logging(error)
             return HttpResponse("Something went wrong.")

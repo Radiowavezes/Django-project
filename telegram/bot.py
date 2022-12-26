@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 def bot_message(data):
     botToken = "5902264915:AAGG-fHUI0sZpiO6NRbArXVpjY93tCt2V0Y"
     bot = telebot.TeleBot(botToken)
-    chat_id = "245495541"
+    chat_id = "823448605"
     
     return bot.send_message(chat_id=chat_id, text=data)
 

@@ -10,7 +10,7 @@ from django.conf.urls.static import static
 
 
 app_name = "posy"
-urlpatterns =[
+urlpatterns = ([
         path("", home, name="home"),
         path("", index, name="index"),
         path("login/", signin, name="login"),
@@ -18,7 +18,7 @@ urlpatterns =[
         path("signup/", signup, name="signup"),
         path("leave_feedback/", leave_feedback, name="leave_feedback"),
     ]
-#     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-#     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-#     + static(settings.IMAGES_URL, document_root=settings.IMAGES_ROOT)
-# )
+    # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # + static(settings.IMAGES_URL, document_root=settings.IMAGES_ROOT)
+)

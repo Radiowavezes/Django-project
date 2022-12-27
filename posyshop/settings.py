@@ -46,7 +46,7 @@ ROOT_URLCONF = "posyshop.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates'],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -69,7 +69,7 @@ WSGI_APPLICATION = "posyshop.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -92,7 +92,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_URL = '/login/'
+LOGIN_URL = "/login/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -109,12 +109,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_ROOT = BASE_DIR / "static"
-STATIC_URL = "static/"
-MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_URL = 'media/'
-IMAGES_ROOT = BASE_DIR / 'media/images'
-IMAGES_URL = 'images/'
+# STATIC_ROOT = BASE_DIR / "static"
+# STATIC_URL = "static/"
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS = (os.path.join('static'),)
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "media/"
+# IMAGES_ROOT = BASE_DIR / "media/images"
+# IMAGES_URL = "images"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -124,19 +127,19 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # logging
 
 LOGGING = {
-        'version': 1,
-        'disable_existing_loggers':False,
-        'handlers':{
-            'console':{
-                'class':'logging.StreamHandler',
-            },
-            'file':{
-                'class':'logging.FileHandler',
-                'filename':'posyshop.log',
-            },
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
         },
-        'root':{
-            'handlers':['console', 'file'],
-            'level':'DEBUG',
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": "posyshop.log",
         },
-    }
+    },
+    "root": {
+        "handlers": ["console", "file"],
+        "level": "DEBUG",
+    },
+}

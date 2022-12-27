@@ -1,11 +1,12 @@
 import telebot
 from bs4 import BeautifulSoup
+from . import config
 
 
 def bot_message(data):
-    botToken = "5902264915:AAGG-fHUI0sZpiO6NRbArXVpjY93tCt2V0Y"
+    botToken = config.botToken
     bot = telebot.TeleBot(botToken)
-    chat_id = "823448605"
+    chat_id = config.chat_id
     
     return bot.send_message(chat_id=chat_id, text=data)
 

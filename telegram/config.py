@@ -1,2 +1,3 @@
 botToken = "5902264915:AAGG-fHUI0sZpiO6NRbArXVpjY93tCt2V0Y"
-chat_id = "823448605"
+chat_id = "823448605" # Viktoria
+# chat_id = "245495541" #me
